@@ -881,48 +881,49 @@
             });
 
             async function callGeminiAPI(age, gender, symptoms, medicalHistory) {
-                const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 
-                const model = "gemini-3-flash-preview" // Updated to use the correct model
-                const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
+    const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 🔴 Replace with your real key
 
-                const prompt = `As a medical assistant, provide recommendations for a ${age}-year-old ${gender} with these symptoms: ${symptoms}. Medical history: ${medicalHistory || 'None'}.
-                Return only valid JSON with keys: disease, description, precautions, medications, workout, diet.`;
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
 
-                const body = {
-                    contents: [{ parts: [{ text: prompt }] }],
-                    generationConfig: { responseMimeType: "application/json" }
-                };
+    const prompt = `As a medical assistant, provide recommendations for a ${age}-year-old ${gender} with these symptoms: ${symptoms}. Medical history: ${medicalHistory || 'None'}.
+Return only valid JSON with keys: disease, description, precautions, medications, workout, diet.`;
 
-                const res = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(body)
-                });
+    const body = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { responseMimeType: "application/json" }
+    };
 
-                const data = await res.json();
-                console.log("Full API response:", data);
+    const res = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    });
 
-                if (!res.ok) {
-                    throw new Error(data.error?.message || "API Error");
-                }
+    const data = await res.json();
+    console.log("Full API response:", data);
 
-                let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (!aiText) throw new Error("No text returned by AI.");
+    if (!res.ok) {
+        throw new Error(data.error?.message || "API Error");
+    }
 
-                try {
-                    return JSON.parse(aiText.trim());
-                } catch {
-                    return {
-                        disease: "Analysis incomplete.",
-                        description: aiText || "Could not parse detailed recommendations. Please try again with more specific symptoms.",
-                        precautions: "—",
-                        medications: "—",
-                        workout: "—",
-                        diet: "—"
-                    };
-                }
-            }
+    let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!aiText) throw new Error("No text returned by AI.");
 
+    try {
+        return JSON.parse(aiText.trim());
+    } catch {
+        return {
+            disease: "Analysis incomplete.",
+            description: aiText,
+            precautions: "—",
+            medications: "—",
+            workout: "—",
+            diet: "—"
+        };
+    }
+}
             // Login/Logout logic
             function updateLoginState() {
                 const username = localStorage.getItem('username');
