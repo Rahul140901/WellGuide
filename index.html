@@ -5,9 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WellGuide - AI Medical Assistant</title>
-    <!-- PWA Meta Tags and Manifest Link -->
-    <meta name="theme-color" content="#01796F">
-    <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -588,7 +585,7 @@
     <div class="bg-circle-2"></div>
 
     <div class="header">
-        <img src="image/header_logo.png"
+         <img src="image/header_logo.png"
             alt="WellGuide AI Logo" class="header-logo">
         <h1>WellGuide</h1>
         <p>Get personalized medical recommendations based on your symptoms.</p>
@@ -884,7 +881,7 @@
             });
 
             async function callGeminiAPI(age, gender, symptoms, medicalHistory) {
-                const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 
+                                const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 
                 const model = "gemini-3-flash-preview" // Updated to use the correct model
                 const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent';
 
@@ -968,18 +965,6 @@
 
             // Initial check for login state
             updateLoginState();
-
-            // PWA Service Worker Registration
-            if ('serviceWorker' in navigator) {
-                window.addEventListener('load', () => {
-                    // Note: If hosting on a subfolder (e.g., GitHub Pages project site), 
-                    // you might need to change the scope/path here. 
-                    // './service-worker.js' generally works for the same directory.
-                    navigator.serviceWorker.register('service-worker.js')
-                        .then(reg => console.log('Service Worker registered!', reg.scope))
-                        .catch(err => console.log('Service Worker registration failed:', err));
-                });
-            }
         });
     </script>
 </body>
