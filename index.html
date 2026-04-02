@@ -881,9 +881,9 @@
             });
 
             async function callGeminiAPI(age, gender, symptoms, medicalHistory) {
-                                const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 
+                const apiKey = "AIzaSyCPxqcmWkEoJS6hjcjceap1_DGkILhaO60"; // 
                 const model = "gemini-3-flash-preview" // Updated to use the correct model
-                const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent';
+                const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent";
 
                 const prompt = `As a medical assistant, provide recommendations for a ${age}-year-old ${gender} with these symptoms: ${symptoms}. Medical history: ${medicalHistory || 'None'}.
                 Return only valid JSON with keys: disease, description, precautions, medications, workout, diet.`;
