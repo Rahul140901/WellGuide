@@ -1,6 +1,6 @@
 {
-    "name": "MediGuide - AI Medical Assistant",
-    "short_name": "MediGuide",
+    "name": "WellGuide - AI Medical Assistant",
+    "short_name": "WellGuide",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#f0f4f8",
