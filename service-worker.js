@@ -1,5 +1,5 @@
-// Service Worker for MediGuide PWA
-const CACHE_NAME = 'mediguide-cache-v1';
+// Service Worker for WellGuide PWA
+const CACHE_NAME = 'WellGuide-cache-v1';
 const urlsToCache = [
     '/', // Caches the root, which typically resolves to index.html
     'index.html',
